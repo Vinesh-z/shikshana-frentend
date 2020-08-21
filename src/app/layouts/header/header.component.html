@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="heading" routerLink="../home">MY SHIKSHANA</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mr-2">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="../home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="../gallery">GALLERY</a>
+            </li>
+            <li class="nav-item" *ngIf="!facadeService.getUser()">
+                <a class="nav-link" routerLink='../login'>LOGIN</a>
+            </li>
+        </ul>
+        <div *ngIf="facadeService.getUser()" class="dropdown username-dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle text-white user-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        HEY {{facadeService.getUser().name | uppercase}}
+      </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item" *ngIf="facadeService.getUser().role === 'USER'" [routerLink]="[ '/schedules/'  + facadeService.getUserId() ]">Schedules</button>
+                <button class="dropdown-item" *ngIf="facadeService.getUser().role === 'ADMIN'" [routerLink]="[ '/admin' ]">Admin</button>
+
+                <button class="dropdown-item" (click)="logout()" id="logout">Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>

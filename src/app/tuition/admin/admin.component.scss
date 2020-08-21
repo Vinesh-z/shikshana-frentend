@@ -1,0 +1,80 @@
+.container {
+    margin-bottom: 12rem;
+}
+
+.heading-card {
+    margin-top: 4rem;
+    height: 4rem;
+}
+
+.addUser {
+    margin: 2rem;
+}
+
+.addSchedule {
+    background-color: #d7d3ff;
+}
+
+.addUserCard {
+    background-color: #fad4ca;
+}
+
+.addCollegeCard {
+    background-color: #f3dcf7;
+}
+
+.deleteSchedulesCard {
+    background-color: #d9ffde;
+}
+
+.editSchedules,
+.deleteScheduleCollegeSelect {
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 1rem;
+}
+
+.card-heading {
+    font-weight: bold;
+    font-family: 'Raleway';
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+.ql-container {
+    min-height: 5rem !important;
+}
+
+.arrow {
+    font-size: larger;
+    cursor: pointer;
+    color: #ff7101;
+    float: right;
+}
+
+.tags {
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+.chip {
+    color: #fff;
+    margin-right: 0.2rem;
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 10px;
+    line-height: 20px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.closebtn {
+    line-height: 18px;
+    padding-left: 10px;
+    color: rgb(219, 26, 26);
+    font-weight: bold;
+    float: right;
+    font-size: 15px;
+    cursor: pointer;
+}

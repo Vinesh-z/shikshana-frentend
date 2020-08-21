@@ -1,0 +1,15 @@
+.container {
+    margin-top: 7.5rem;
+    margin-bottom: 3rem;
+}
+
+.contactForm {
+    margin-top: 3rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 865px) {
+    .container {
+        margin-top: 3rem;
+    }
+}

@@ -1,0 +1,25 @@
+.heading {
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    color: #000;
+    font-weight: bolder;
+    font-size: large;
+    letter-spacing: 1px;
+    color: #E8584F;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar {
+    background-color: #EAE7DC !important;
+}
+
+.navbar-light .nav-item.active .nav-link,
+.navbar-light .nav-item .nav-link:active,
+.navbar-light .nav-item .nav-link:focus,
+.navbar-light .nav-link:hover {
+    color: #E8584F !important;
+}

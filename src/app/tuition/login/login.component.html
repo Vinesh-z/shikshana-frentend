@@ -1,0 +1,53 @@
+<div class="container">
+    <div class=" card">
+        <div class="row">
+            <div class="col-md-6 ">
+                <img class="d-block w-100 " src="../../assets/login.jpg" height="600px " width="300px " alt="First slide ">
+            </div>
+            <div class="col-md-6 mt-5">
+                <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
+
+                    <h1 style="font-family: 'Gruppo', cursive; text-align: center;">LOGIN</h1>
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+                        <ul class="list-unstyled list-inline social text-center">
+                            <li class="list-inline-item ml-2"><a href="https://www.fiverr.com/share/qb8D02"><i style="color: #3a589e;"
+                    class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item ml-2"><a href="https://www.fiverr.com/share/qb8D02"><i style="color: #fb3958;"
+                    class="fa fa-instagram"></i></a></li>
+                            <li class="list-inline-item ml-2"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i
+                    class="fa fa-envelope"></i></a></li>
+                            <li class="list-inline-item ml-2"><a href="https://www.fiverr.com/share/qb8D02"><i style="color: #dc143c;"
+                    class="fa fa-google-plus"></i></a></li>
+                            <li class="list-inline-item ml-2"><a href="https://www.fiverr.com/share/qb8D02"><i style="color: #009eed;"
+                    class="fa fa-twitter"></i></a></li>
+
+                        </ul>
+                    </div>
+                    <div class="form-group mt-5 mr-2">
+                        <label class="email" for="emailId "><span style="color: red;">* </span>Email-ID:</label>
+                        <input type="email" class="rounded-0 form-control form-control-sm" id="email" formControlName="emailId" aria-describedby="emailHelp " placeholder="Enter EmailID " pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                            [ngClass]="{ 'is-invalid': f.emailId.touched && f.emailId.errors } ">
+                        <div *ngIf="f.emailId.touched && f.emailId.errors " class="invalid-feedback ">invalid emailId</div>
+                    </div>
+
+                    <div class="form-group mt-5 mr-2">
+                        <label class="password" for="password"><span style="color: red;">* </span>Password:</label>
+                        <input type="password" class="form-control" id="loginPassword" formControlName="password" placeholder="Enter Password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }">
+                        <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">invalid password</div>
+                    </div>
+                    <div class="mt-5 mr-2">
+                        <label class="college" for="college"><span style="color: red;">* </span>Select your college:</label>
+                        <select (change)="selectCollege($event.target.value)" formControlName="selectedCollege" name="Select college" class="form-control form-control-sm">
+              <option disabled [selected]=true value="">Select College</option>
+              <option *ngFor='let college of colleges' value="{{college._id}}">
+                {{college.name}}</option>
+            </select>
+                    </div>
+                    <div>
+                        <button type="submit" id="loginSubmit " my-directive class="btn btn-primary border-0 rounded-0 shadows mt-5 w-100" [disabled]="loginForm.invalid">LOGIN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

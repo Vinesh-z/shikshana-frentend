@@ -1,0 +1,213 @@
+<div class="container">
+    <div class="card addSchedule heading-card"><span class="card-heading" style="color: #1201ff;" (click)="editSchedule=!editSchedule">ADD CLASSES TO COLLEGE
+      <i class="fa fa-arrow-circle-down arrow" *ngIf="!editSchedule"></i>
+      <i class="fa fa-arrow-circle-up arrow" *ngIf="editSchedule"></i>
+    </span>
+    </div>
+
+    <div class="card " *ngIf="editSchedule">
+        <div class="editSchedules">
+            <select (change)="selectScheduleCollege($event.target.value)" name="Select college" class="form-control form-control-sm">
+        <option>Select College</option>
+        <option *ngFor='let college of colleges' value="{{college._id}}">
+          {{college.name}}</option>
+      </select>
+
+            <div class="standards mt-3" *ngIf="selectedCollege">
+                <div class="form-check form-check-inline" *ngFor="let standard of selectedCollege.standards">
+                    <input class="form-check-input" (click)="selectScheduleStandard(standard._id)" type="radio" name="inlineRadioOptions" id={{standard._id}} value={{standard.standard}}>
+                    <label class="form-check-label" for="inlineRadio1">{{standard.standard}}</label>
+                </div>
+            </div>
+
+
+            <form class="mt-3" [formGroup]="scheduleForm" (ngSubmit)="addSchedule()" *ngIf=" scheduleStandard">
+                <div class="scheduleDate">
+                    <label class="date font-weight-bold mr-3" for="date"><span style="color: red;">* </span>Session date:</label>
+                    <input type="date" id="schedule" formControlName="date" name="schedule">
+                </div>
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="subject font-weight-bold" for="subject"><span style="color: red;">* </span>Subject:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="subject" formControlName="subject" aria-describedby="subjectHelp" placeholder="Enter Subject Name" pattern="^[a-zA-Z\s]+$" [ngClass]="{ 'is-invalid': k.subject.touched
+                && k.subject.errors }">
+                    <div *ngIf="k.subject.touched && k.subject.errors" class="invalid-feedback">invalid name</div>
+                </div>
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="time font-weight-bold" for="time"><span style="color: red;">* </span>Time:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="time" formControlName="time" aria-describedby="timeHelp" placeholder="Enter Time ex: 1pm-2pm" [ngClass]="{ 'is-invalid': k.time.touched && k.time.errors
+                }">
+                    <div *ngIf="k.time.touched && k.time.errors" class="invalid-feedback">invalid time</div>
+                </div>
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="link font-weight-bold" for="link"><span style="color: red;">* </span>Zoom-link:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="link" formControlName="link" aria-describedby="linkHelp" placeholder="Enter Link" [ngClass]="{ 'is-invalid': k.link.touched && k.link.errors }">
+                    <div *ngIf="k.link.touched && k.link.errors" class="invalid-feedback">invalid link</div>
+                </div>
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="meetingId font-weight-bold" for="meetingId"><span style="color: red;">* </span>Meeting-ID:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="link" formControlName="meetingId" aria-describedby="meetingIdHelp" placeholder="Enter Meeting-Id" [ngClass]="{ 'is-invalid': k.meetingId.touched && k.meetingId.errors }">
+                    <div *ngIf="k.meetingId.touched && k.meetingId.errors" class="invalid-feedback">invalid meetingId</div>
+                </div>
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="password font-weight-bold" for="password"><span style="color: red;">* </span>Password:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="password" formControlName="password" aria-describedby="passwordHelp" placeholder="Enter Password" [ngClass]="{ 'is-invalid': k.password.touched && k.password.errors }">
+                    <div *ngIf="k.password.touched && k.password.errors" class="invalid-feedback">invalid link</div>
+                </div>
+
+                <div>
+                    <button type="submit" id="scheduleSubmit" class="btn btn-primary border-0 rounded-0 shadows mt-3 w-100" [disabled]="scheduleForm.invalid || scheduleStandard.length==0">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="card addUserCard heading-card"><span class="card-heading" style="color: #ff3401;" (click)="addUser=!addUser">ADD
+      USER
+      <i class="fa fa-arrow-circle-down arrow" *ngIf="!addUser"></i>
+      <i class="fa fa-arrow-circle-up arrow" *ngIf="addUser"></i>
+    </span>
+    </div>
+    <div class="card" *ngIf="addUser">
+        <div class="addUser">
+            <form [formGroup]="userForm" class="userForm" (ngSubmit)="register()">
+
+                <div class="form-group mt-4 mr-2">
+                    <label class="name font-weight-bold" for="name"><span style="color: red;">* </span>Name:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="name" formControlName="name" aria-describedby="nameHelp" placeholder="Enter Name" pattern="^[a-zA-Z\s]+$" [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors
+                }">
+                    <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">invalid name</div>
+                </div>
+
+                <div class="form-group mt-3 mr-2">
+                    <label class="email font-weight-bold" for="email"><span style="color: red;">* </span>Email-ID:</label>
+                    <input type="email" class="rounded-0 form-control form-control-sm" id="email" formControlName="emailId" aria-describedby="emailHelp" placeholder="Enter EmailID" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                        [ngClass]="{ 'is-invalid': f.emailId.touched && f.emailId.errors }">
+                    <div *ngIf="f.emailId.touched && f.emailId.errors" class="invalid-feedback">invalid emailId</div>
+                </div>
+
+                <div class="form-group mt-3 mr-2">
+                    <label class="password font-weight-bold" for="loginPassword"><span style="color: red;">*
+            </span>Password:</label>
+                    <input type="password" class="rounded-0 form-control form-control-sm" id="loginPassword" formControlName="password" placeholder="Enter Password" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }">
+                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">invalid password</div>
+                </div>
+                <label class="college font-weight-bold mt-2" for="college"><span style="color: red;">*
+          </span>College:</label>
+                <select (change)="selectStudentCollege($event.target.value)" name="Select college" class="form-control form-control-sm rounded-0">
+          <option>Select College</option>
+          <option *ngFor='let college of colleges ' value="{{college._id}}">
+            {{college.name}}</option>
+        </select>
+                <div class="standards mt-3" *ngIf="studentCollege">
+                    <div class="form-check form-check-inline" *ngFor="let standard of studentCollege.standards">
+                        <input class="form-check-input" (click)="selectStudentStandard(standard._id)" type="radio" name="inlineRadioOptions" id={{standard._id}} value={{standard.standard}}>
+                        <label class="form-check-label" for="inlineRadio1">{{standard.standard}}</label>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" id="userSubmit" class="btn btn-primary border-0 rounded-0 shadows mt-3 w-100" [disabled]="userForm.invalid || studentStandard.length==0">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <div class="card addCollegeCard heading-card"><span class="card-heading" style="color: #d501ff;" (click)="addCollege=!addCollege">ADD
+      COLLEGE
+      <i class="fa fa-arrow-circle-down arrow" *ngIf="!addCollege"></i>
+      <i class="fa fa-arrow-circle-up arrow" *ngIf="addCollege"></i>
+    </span>
+    </div>
+    <div class="card" *ngIf="addCollege">
+        <div class="addUser">
+            <form [formGroup]="collegeForm" class="collegeForm">
+
+                <div class="form-group">
+                    <label class="collegeName font-weight-bold" for="collegeName"><span style="color: red;">* </span>College
+            Name:</label>
+                    <input type="text" class="rounded-0 form-control form-control-sm" id="collegeName" formControlName="collegeName" aria-describedby="nameHelp" placeholder="Enter College Name" pattern="^[a-zA-Z\s]+$" [ngClass]="{
+                'is-invalid': g.collegeName.touched && g.collegeName.errors }">
+                    <div *ngIf="g.collegeName.touched && g.collegeName.errors" class="invalid-feedback">invalid name</div>
+                </div>
+
+                <div class="aboutCollege form-group">
+                    <label class="collegeName font-weight-bold" for="collegeName"><span style="color: red;">* </span>About College:</label>
+                    <quill-editor style="height: 5rem;" class="mt-3 about" formControlName="about"></quill-editor>
+                </div>
+                <div class="mt-3">
+                    <label class="name font-weight-bold" for="tags">Standards:</label>
+                    <input #standardInput type="text" maxlength="16" (keyup.enter)="addStandard(standardInput)" class="form-control form-control-sm rounded-0 text-box pl-4 pr-4" id="addStandard" aria-describedby="policyNameHelp" placeholder="Add Standards">
+                    <span class="tags">
+            <div [ngStyle]="{ 'background-color': colors[i%8]}" class="chip"
+              *ngFor="let standard of standards; let i=index">
+              {{standard.standard}}
+              <span class="closebtn" (click)="removeStandard(i)">&times;</span>
+                </div>
+                </span>
+        </div>
+
+        <div>
+            <button type="button" (click)="submitCollege()" id="collegeSubmit" class="btn btn-primary border-0 rounded-0 shadows mt-3 w-100" [disabled]="collegeForm.invalid">Submit</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="card deleteSchedulesCard heading-card"><span class="card-heading" style="color: #008a12;" (click)="deleteSchedules=!deleteSchedules">DELETE SCHEDULES
+      <i class="fa fa-arrow-circle-down arrow" *ngIf="!deleteSchedules"></i>
+      <i class="fa fa-arrow-circle-up arrow" *ngIf="deleteSchedules"></i>
+    </span>
+</div>
+<div class="deleteSchedules card" *ngIf="deleteSchedules">
+    <div class="deleteScheduleCollegeSelect">
+        <select (change)="selectDeleteScheduleCollege($event.target.value)" name="Select college" class="form-control form-control-sm">
+        <option>Select College</option>
+        <option *ngFor='let college of colleges' value="{{college._id}}">
+          {{college.name}}</option>
+      </select>
+
+        <div class="standards mt-3" *ngIf="deleteScheduleCollege">
+            <div class="form-check form-check-inline" *ngFor="let standard of deleteScheduleCollege.standards">
+                <input class="form-check-input" (click)="selectDeleteScheduleStandard(standard)" type="radio" name="inlineRadioOptions" id={{standard._id}} value={{standard.standard}}>
+                <label class="form-check-label" for="inlineRadio1">{{standard.standard}}</label>
+            </div>
+            <div class="schedules">
+                <div class="card schedule-card mt-3" *ngFor="let schedule of schedules">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-md-3 col-sm-3 mt-2 col-3 subject">
+                            {{schedule.subject | uppercase}}
+                        </div>
+                        <div class="col-md-3 col-sm-3 mt-2 col-3">
+                            {{schedule.date}}
+                        </div>
+                        <div class="col-md-3 col-sm-3 mt-2 col-3">
+                            {{schedule.time}}
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-3">
+                            <button type="button" id="schedule._id" (click)="deleteSchedule(schedule._id)" class="btn btn-danger border-0 rounded-0 shadows mt-1 mb-1 "><i class="fa fa-trash"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="scheduleUpdated">
+                <button type="submit" id="updateSchedules" (click)="updateSchedules()" class="btn btn-primary border-0 rounded-0 shadows mt-3 w-100  mb-1 ">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <button type="button" (click)="refresh()" id="refresh" class="btn btn-primary border-0 rounded-0 shadows mt-5 w-100">Refresh</button>
+</div>
+</div>
