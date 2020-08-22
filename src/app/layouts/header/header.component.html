@@ -22,7 +22,7 @@
       </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <button class="dropdown-item" *ngIf="facadeService.getUser().role === 'USER'" [routerLink]="[ '/schedules/'  + facadeService.getUserId() ]">Schedules</button>
-                <button class="dropdown-item" *ngIf="facadeService.getUser().role === 'ADMIN'" [routerLink]="[ '/admin' ]">Admin</button>
+                <button class="dropdown-item" *ngIf="facadeService.getUser().role === 'ADMIN'" [routerLink]="[ '/admin' ]">Dashboard</button>
 
                 <button class="dropdown-item" (click)="logout()" id="logout">Logout</button>
             </div>

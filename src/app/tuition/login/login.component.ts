@@ -58,9 +58,8 @@ export class LoginComponent implements OnInit {
         this.facadeService.setUserToken();
         this.facadeService.setUser();
         this.facadeService.toaster('success', result.message);
-        console.log(result);
         if (result.role === 'ADMIN') {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/home/']);
         } else {
           this.userService.getUserFromToken().subscribe(loggedInUser => {
             this.router.navigate(['/schedules/', loggedInUser.userId]);
