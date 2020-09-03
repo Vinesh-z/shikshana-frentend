@@ -1,3 +1,3 @@
 export class AllUrl {
-    BASE_URL = 'http://54.212.231.119:3000';
+    BASE_URL = 'http://54.190.12.74:3000';
 }
