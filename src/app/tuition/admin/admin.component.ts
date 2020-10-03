@@ -38,6 +38,7 @@ export class AdminComponent implements OnInit {
   scheduleUpdated = false;
   schedules = [];
 
+  deleteColleges = false;
   colors = [
     '#FF8A80', '#FF80AB', '#EA80FC', '#B388FF', '#00897B', '#B0BEC5', '#BCAAA4', '#FFAB91'
   ];
@@ -208,6 +209,11 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  deleteCollege = (collegeId) => {
+    this.collegeService.deleteCollege(collegeId).subscribe(data => {
+      this.getColleges();
+    });
+  }
 
   refresh = () => {
     this.formControl();
